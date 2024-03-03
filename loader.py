@@ -11,7 +11,7 @@ from utils.__main__ import import_handlers, import_db, import_module
 
 async def main() -> None:
     i18n = I18n(path="locales", default_locale="en")
-    dp.message.middleware.register(BotI18nMiddleware(i18n))
+    dp.message.outer_middleware.register(BotI18nMiddleware(i18n))
 
     await import_handlers()
     await import_module("models")

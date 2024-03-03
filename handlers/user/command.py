@@ -4,7 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
 from filters.__main__ import MessageFilter
-from keyboards.user import HOME_KEYBOARD
+from keyboards.user import Keyboards
 from messages.user import Messages
 from models.user import User
 from states.user import PageState
@@ -19,7 +19,7 @@ async def start_handler(message: Message, state: FSMContext):
     session.add(user)
     session.commit()
     await state.set_state(PageState.add_user)
-    await message.answer(str(Messages.start), reply_markup=HOME_KEYBOARD)
+    await message.answer(str(Messages.start), reply_markup=Keyboards().HOME_KEYBOARD)
 
 
 @router.message(PageState.add_user)
